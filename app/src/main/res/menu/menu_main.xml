@@ -3,11 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.myapplication.MainActivity">
     <item
-        android:id="@+id/delete"
-        android:title="delete"
+        android:id="@+id/kajaki"
+        android:title="kajki"
         android:orderInCategory="100"
         android:icon="@drawable/common_google_signin_btn_icon_dark_focused"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/jedzenie"
+        android:title="jedzenie"
+        android:orderInCategory="100"
+        android:icon="@drawable/abc_vector_test"
+        app:showAsAction="always" />
+
+
     <item
         android:id="@+id/domyslny"
         android:orderInCategory="100"

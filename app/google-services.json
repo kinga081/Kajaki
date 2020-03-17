@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "78669865558",
+    "firebase_url": "https://kajaki-71c3b.firebaseio.com",
+    "project_id": "kajaki-71c3b",
+    "storage_bucket": "kajaki-71c3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78669865558:android:78a5fc19dba9b8d19b51f7",
+        "android_client_info": {
+          "package_name": "com.example.kajax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78669865558-t13420mfg418rehe552d8naojq28qn9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2CRvVASr3IEx6S5ac7MK_F7eFLX5DKhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78669865558-t13420mfg418rehe552d8naojq28qn9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78669865558:android:907469c515916b589b51f7",
+        "android_client_info": {
+          "package_name": "com.example.kinga.kajax"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78669865558-t13420mfg418rehe552d8naojq28qn9g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2CRvVASr3IEx6S5ac7MK_F7eFLX5DKhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "78669865558-t13420mfg418rehe552d8naojq28qn9g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
