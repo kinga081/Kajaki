@@ -5,9 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.Location;
@@ -27,7 +27,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +46,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private HashMap<String, String> meMap;
     private Marker marker;
     private FloatingActionButton info;
+    public String title;
+    public String value;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,13 +86,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                /*
                 android.app.AlertDialog.Builder builder =
                         new android.app.AlertDialog.Builder(MapsActivity.this);
                 builder.setTitle("title");
                 builder.setMessage("value");
                 builder.setPositiveButton("Zamknij", null);
                 builder.show();
-
+*/
+                Intent startNewActivity = new Intent(MapsActivity.this, Informacja.class);
+                startNewActivity.putExtra("title", title);
+                startNewActivity.putExtra("value", value);
+                startActivity(startNewActivity);
             }
         });
     }
@@ -135,24 +142,53 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         mMap = googleMap;
 
-        mMap.setMyLocationEnabled( true );
-        mMap.setOnMyLocationButtonClickListener( this );
-        mMap.setOnMyLocationClickListener( this );
+        mMap.setMyLocationEnabled(true);
+        mMap.setOnMyLocationButtonClickListener(this);
+        mMap.setOnMyLocationClickListener(this);
 
-        mMap.moveCamera( CameraUpdateFactory.newLatLng( new LatLng( 50.6027829, 23.0264988 ) ) );
-        mMap.animateCamera( CameraUpdateFactory.zoomTo( 15 ) );
+        mMap.setOnMarkerClickListener(this);
+        mMap.setOnMapClickListener(this);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(51.2466815, 22.5678196)));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+
+        mMap.addMarker( new MarkerOptions()
+                .position( new LatLng( 50,23 ) )
+                .title( "dupa" )
+                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE ) )
+        );
+        mMap.addMarker( new MarkerOptions()
+                .position( new LatLng( 50.3,23 ) )
+                .title( "dupa2" )
+                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
+        );
+        mMap.addMarker( new MarkerOptions()
+                .position( new LatLng( 50.2,23 ) )
+                .title( "dupa2" )
+                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
+        );
+        mMap.addMarker( new MarkerOptions()
+                .position( new LatLng( 50.1,23 ) )
+                .title( "dupa2" )
+                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
+        );
+        mMap.addMarker( new MarkerOptions()
+                .position( new LatLng( 51.3,23 ) )
+                .title( "dupa2" )
+                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
+        );
     }
 
 
     public void onMyLocationClick(@NonNull Location location) {
         Toast.makeText( this, "Moja lokalizacja: " + location.getLatitude() + "," + location.getLongitude(), Toast.LENGTH_LONG ).show();
-        //info.setVisibility(View.INVISIBLE);
+        info.setVisibility(View.INVISIBLE);
     }
 
 
     public boolean onMyLocationButtonClick() {
         Toast.makeText( this, "Moja lokalizacja", Toast.LENGTH_SHORT ).show();
-        //info.setVisibility(View.INVISIBLE);
+        info.setVisibility(View.INVISIBLE);
         return false;
     }
 
@@ -167,19 +203,21 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public boolean onMarkerClick(Marker marker) {
-        //title = marker.getTitle();
-        //info.setVisibility(View.VISIBLE);
+        title = marker.getTitle();
+        value = marker.getSnippet();
+        info.setVisibility(View.VISIBLE);
         //value = meMap.get(title);
         return false;
     }
 
     @Override
     public void onMapClick(LatLng latLng) {
-        //info.setVisibility(View.INVISIBLE);
+        info.setVisibility(View.INVISIBLE);
     }
 
+
     public void dodajMarker(String kategoria, final boolean kolor) {// true== kajaki
-        info.setVisibility( View.VISIBLE );
+        info.setVisibility( View.INVISIBLE );
 
         mUsers = FirebaseDatabase.getInstance().getReference( kategoria );
         mUsers.push().setValue( marker );
@@ -196,13 +234,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         mMap.addMarker( new MarkerOptions()
                                 .position( location )
                                 .title( user.getName() )
-                                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_ROSE ) )
+                                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE ) )
+                                .snippet( "Kayaks" )
                         );
                     } else {
                         mMap.addMarker( new MarkerOptions()
                                 .position( location )
                                 .title( user.getName() )
-                                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_GREEN ) )
+                                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
+                                .snippet( "Gastronomy" )
                         );
                     }
                 }
