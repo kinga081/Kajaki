@@ -22,6 +22,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.Html;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -40,6 +43,7 @@ public class Informacja extends AppCompatActivity {
     private ListView listView;
     public ArrayAdapter<String> arrayAdapter;
     private TextView text;
+    private Spanned HyperLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +58,10 @@ public class Informacja extends AppCompatActivity {
         final String title = getIntent().getStringExtra("title");
         final String value = getIntent().getStringExtra("value");
 
-        text =(TextView) findViewById(R.id.text);
+        //text =(TextView) findViewById(R.id.text);
+
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference(value).child( title );
+        ////final String player = mDatabaseReference.push().getKey();
 
         FloatingActionButton fab = findViewById( R.id.fab );
         fab.setOnClickListener( new View.OnClickListener() {
@@ -65,24 +72,25 @@ public class Informacja extends AppCompatActivity {
                         .setAction( "Action", null ).show();
             }
         } );
-        Lokalizacje user = new Lokalizacje();
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference(value).child( title );
+
+
         listView =(ListView) findViewById(R.id.lista);
         arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
         listView.setAdapter(arrayAdapter);
 
-/*
+
 
         mDatabaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot s : dataSnapshot.getChildren()){
-                    Lokalizacje user = s.getValue(Lokalizacje.class);
-                    text.setText( user.getAdress() );
-
-
-                }
+                Lokalizacje user = dataSnapshot.getValue(Lokalizacje.class);
+                    ((TextView)findViewById(R.id.nazwa)).setText(user.getName());
+                    ((TextView)findViewById(R.id.adres)).setText("Adres: "+user.getAdress());
+                    ((TextView)findViewById(R.id.godziny)).setText("Godziny otwarcia: "+user.getH_open());
+                    ((TextView)findViewById(R.id.telefon)).setText("Telefon: "+user.getTel());
+                    ((TextView)findViewById(R.id.strona)).setMovementMethod( LinkMovementMethod.getInstance());
+                    ((TextView)findViewById(R.id.strona)).setText(Html.fromHtml("<a href='https://"+user.getWeb()+"'>"+user.getWeb()+"</a>"));
 
             }
 
@@ -90,10 +98,10 @@ public class Informacja extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
-        });*/
+        });
         //arrayAdapter.notifyDataSetChanged();
         //arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
-
+/*
         mDatabaseReference.addChildEventListener(new ChildEventListener() {  ///lista
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -124,7 +132,7 @@ public class Informacja extends AppCompatActivity {
 
             }
         });
-
+*/
    // lista.add( arrayList.get( 5 ) );
        // lista.add( "Adres: "+arrayList.get( 1 ) );
 

@@ -16,7 +16,7 @@ class Lokalizacje {
     String name;
     String adress;
     String h_open;
-    float tel;
+    String tel;
     String web;
     float Latitude;
     float longitude;
@@ -39,7 +39,7 @@ class Lokalizacje {
         return h_open;
     }
 
-    public float getTel() {
+    public String getTel() {
         return tel;
     }
 

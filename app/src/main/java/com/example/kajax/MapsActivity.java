@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -149,34 +150,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setOnMarkerClickListener(this);
         mMap.setOnMapClickListener(this);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(51.2466815, 22.5678196)));
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(51.2466815, 22.5678196)));
+        //mMap.animateCamera(CameraUpdateFactory.zoomTo(15));
 
-        mMap.addMarker( new MarkerOptions()
-                .position( new LatLng( 50,23 ) )
-                .title( "dupa" )
-                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE ) )
-        );
-        mMap.addMarker( new MarkerOptions()
-                .position( new LatLng( 50.3,23 ) )
-                .title( "dupa2" )
-                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
-        );
-        mMap.addMarker( new MarkerOptions()
-                .position( new LatLng( 50.2,23 ) )
-                .title( "dupa2" )
-                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
-        );
-        mMap.addMarker( new MarkerOptions()
-                .position( new LatLng( 50.1,23 ) )
-                .title( "dupa2" )
-                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
-        );
-        mMap.addMarker( new MarkerOptions()
-                .position( new LatLng( 51.3,23 ) )
-                .title( "dupa2" )
-                .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
-        );
+        //LatLng pos= new LatLng(51.2466815, 22.5678196);
+
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(50.6031274, 23.0248219), 17);
+        mMap.animateCamera(cameraUpdate);
+
+
     }
 
 
