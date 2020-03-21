@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <LinearLayout
@@ -13,39 +14,57 @@
         android:layout_margin="10dp">
 
     <TextView android:id="@+id/nazwa"
+        android:gravity="center_horizontal"
         android:text="nazwa"
+        android:layout_marginBottom="10dp"
         android:textSize="25dp"
-        android:textColor="#000000"
+        android:textColor="#250902"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"></TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginBottom="10dp"
+            android:background="#9FA0C3"></TextView>
 
         <TextView android:id="@+id/godziny"
             android:text="godziny"
             android:textSize="20dp"
-            android:textColor="#DC1414"
+            android:textColor="#38040E"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
 
         <TextView android:id="@+id/adres"
             android:text="adres"
             android:textSize="20dp"
-            android:textColor="#1D8021"
+            android:textColor="#640D14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
 
         <TextView android:id="@+id/telefon"
             android:text="telefon"
             android:textSize="20dp"
-            android:textColor="#3F51B5"
+            android:textColor="#800E13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="5dp"
+        app:srcCompat="@drawable/globe"></ImageView>
 
         <TextView android:id="@+id/strona"
             android:text="strona"
-            android:textSize="20dp"
+            android:textSize="25dp"
+            android:gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
-
+</LinearLayout>
         <ListView
             android:id="@+id/lista"
             android:layout_width="wrap_content"

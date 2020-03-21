@@ -87,7 +87,7 @@ public class Informacja extends AppCompatActivity {
                 Lokalizacje user = dataSnapshot.getValue(Lokalizacje.class);
                     ((TextView)findViewById(R.id.nazwa)).setText(user.getName());
                     ((TextView)findViewById(R.id.adres)).setText("Adres: "+user.getAdress());
-                    ((TextView)findViewById(R.id.godziny)).setText("Godziny otwarcia: "+user.getH_open());
+                    ((TextView)findViewById(R.id.godziny)).setText("Godziny otwarcia:\n"+user.getH_open());
                     ((TextView)findViewById(R.id.telefon)).setText("Telefon: "+user.getTel());
                     ((TextView)findViewById(R.id.strona)).setMovementMethod( LinkMovementMethod.getInstance());
                     ((TextView)findViewById(R.id.strona)).setText(Html.fromHtml("<a href='https://"+user.getWeb()+"'>"+user.getWeb()+"</a>"));

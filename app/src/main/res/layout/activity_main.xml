@@ -31,7 +31,7 @@
         android:layout_marginLeft="10dp"
         android:layout_marginTop="65dp"
         android:visibility="invisible"
-        app:backgroundTint="#dc0498"
+        app:backgroundTint="#856084"
         app:layout_anchor="@+id/include"
         app:layout_anchorGravity="left|top"
         app:srcCompat="@android:drawable/ic_dialog_info"  />

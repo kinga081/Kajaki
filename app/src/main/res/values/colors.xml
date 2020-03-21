@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+    <color name="colorPrimary">#4DB5C5</color>
+    <color name="colorPrimaryDark">#009FB7</color>
+    <color name="colorAccent">#AD2831</color>
 
     <color name="black_overlay">#66000000</color>
 </resources>
