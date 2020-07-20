@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.myapplication.MainActivity">
     <item
+        android:id="@+id/wyszukaj"
+        android:title="Miejscowość"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/kajaki"
         android:title="kajki"
         android:orderInCategory="100"

@@ -25,6 +25,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -57,6 +58,13 @@ public class Informacja extends AppCompatActivity {
 
         final String title = getIntent().getStringExtra("title");
         final String value = getIntent().getStringExtra("value");
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {finish();
+            }
+        });
 
         //text =(TextView) findViewById(R.id.text);
 

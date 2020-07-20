@@ -8,6 +8,7 @@ class Lokalizacje {
             "h_open": "cały tydzień 09:00–18:00",
             "tel": 885604286,
             "web": "splywy-roztocze.pl",
+            "local": "Obrocz",
             "Latitude": 50.6027829,
             "longitude": 23.0264988
 
@@ -18,6 +19,7 @@ class Lokalizacje {
     String h_open;
     String tel;
     String web;
+    String local;
     float Latitude;
     float longitude;
 
@@ -45,6 +47,10 @@ class Lokalizacje {
 
     public String getWeb() {
         return web;
+    }
+
+    public String getLocal() {
+        return local;
     }
 
     public float getLatitude() {
