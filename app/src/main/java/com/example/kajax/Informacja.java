@@ -58,6 +58,8 @@ public class Informacja extends AppCompatActivity {
 
         final String title = getIntent().getStringExtra("title");
         final String value = getIntent().getStringExtra("value");
+        final String category = getIntent().getStringExtra("category");
+
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -68,7 +70,7 @@ public class Informacja extends AppCompatActivity {
 
         //text =(TextView) findViewById(R.id.text);
 
-        mDatabaseReference = FirebaseDatabase.getInstance().getReference(value).child( title );
+        mDatabaseReference = FirebaseDatabase.getInstance().getReference(value).child( category ).child( title );
         ////final String player = mDatabaseReference.push().getKey();
 
         FloatingActionButton fab = findViewById( R.id.fab );

@@ -4,33 +4,41 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:background="@drawable/gradient">
 
 
   <Button
       android:id="@+id/b1"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:text="Zwierzyniec">
+      android:text="Zwierzyniec"
+      android:textColor="#250902"
+      android:backgroundTint="#9FA0C3">
   </Button>
     <Button
         android:id="@+id/b2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Obrocz">
+        android:text="Obrocz"
+        android:textColor="#38040E"
+        android:backgroundTint="#9FA0C3">
     </Button>
     <Button
         android:id="@+id/b3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guciów">
+        android:text="Guciów"
+        android:textColor="#640D14"
+        android:backgroundTint="#9FA0C3">
 
     </Button>
     <Button
         android:id="@+id/b4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Bondyrz">
+        android:text="Bondyrz"
+        android:textColor="#800E13"
+        android:backgroundTint="#9FA0C3">
     </Button>
 
 

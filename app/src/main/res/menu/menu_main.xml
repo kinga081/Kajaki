@@ -6,6 +6,7 @@
         android:id="@+id/wyszukaj"
         android:title="Miejscowość"
         android:orderInCategory="100"
+        android:icon="@drawable/search"
         app:showAsAction="always" />
     <item
         android:id="@+id/kajaki"

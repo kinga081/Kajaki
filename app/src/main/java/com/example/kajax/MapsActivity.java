@@ -50,6 +50,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private FloatingActionButton info;
     public String title;
     public String value;
+    public String category;
     private FloatingActionButton my_location;
 
 
@@ -107,6 +108,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 Intent startNewActivity = new Intent(MapsActivity.this, Informacja.class);
                 startNewActivity.putExtra("title", title);
                 startNewActivity.putExtra("value", value);
+                startNewActivity.putExtra("category", category);
                 startActivity(startNewActivity);
             }
         });
@@ -146,12 +148,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             dodajMarker2( "Kayaks", true,"Obrocz");
             dodajMarker2( "Kayaks", true,"Guciów");
             dodajMarker2( "Kayaks", true,"Bondyrz");
+           // category = "Kayaks";
             return true;
         } else if (id == R.id.jedzenie) {
             dodajMarker2( "Gastronomy", false, "Zwierzyniec" );
             dodajMarker2( "Gastronomy", false, "Obrocz" );
             dodajMarker2( "Gastronomy", false, "Guciów" );
             dodajMarker2( "Gastronomy", false, "Bondyrz" );
+            //category = "Gastronomy";
             return true;
         } else if (id == R.id.wyszukaj) {
             miejsce();
@@ -220,7 +224,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         title = marker.getTitle();
         value = marker.getSnippet();
         info.setVisibility(View.VISIBLE);
-        //value = meMap.get(title);
+        category = meMap.get(title);
         return false;
     }
 
@@ -230,14 +234,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
-   
+
     public void dodajMarker2(final String kategoria, final boolean kolor, final String text) {// true== kajaki
         info.setVisibility( View.INVISIBLE );
 
         mUsers = FirebaseDatabase.getInstance().getReference( kategoria ).child( text );
         mUsers.push().setValue( marker );
         mMap.clear();
-        // meMap = new HashMap<String, String>();
+        meMap = new HashMap<String, String>();
         mUsers.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -250,16 +254,18 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                             .position( location )
                                             .title( user.getName() )
                                             .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE ) )
-                                            .snippet( "Kayaks" )
+                                            .snippet( "Kayaks")
                                     //.snippet( user.getLocal() )
                             );
+                            meMap.put( user.getName(),text );
                         } else  {
                             mMap.addMarker( new MarkerOptions()
                                     .position( location )
                                     .title( user.getName() )
                                     .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
-                                    .snippet( "Gastronomy" )
+                                    .snippet( "Gastronomy"  )
                             );
+                            meMap.put( user.getName(),text );
                         }
 
                 }
