@@ -19,7 +19,7 @@
         android:layout_marginBottom="10dp"
         android:textSize="25dp"
         android:textColor="#250902"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
         <TextView
             android:layout_width="match_parent"
@@ -33,25 +33,50 @@
             android:textColor="#38040E"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/address"></ImageView>
 
         <TextView android:id="@+id/adres"
-            android:text="adres"
-            android:textSize="20dp"
+            android:hint="adres"
+            android:textSize="25dp"
             android:textColor="#640D14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/phone"></ImageView>
 
         <TextView android:id="@+id/telefon"
-            android:text="telefon"
+            android:hint="telefon"
             android:textIsSelectable="true"
-            android:textSize="20dp"
+            android:textSize="25dp"
             android:textColor="#800E13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
+    </LinearLayout>
 <LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_marginBottom="10dp">
 
     <ImageView
         android:layout_width="40dp"
@@ -66,10 +91,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
 </LinearLayout>
-        <ListView
-            android:id="@+id/lista"
+        <ImageView
+            android:id="@+id/image"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/kayak3"></ImageView>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

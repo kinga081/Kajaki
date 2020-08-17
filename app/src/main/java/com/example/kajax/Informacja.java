@@ -29,6 +29,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ public class Informacja extends AppCompatActivity {
     public ArrayAdapter<String> arrayAdapter;
     private TextView text;
     private Spanned HyperLink;
+    private ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +63,11 @@ public class Informacja extends AppCompatActivity {
         final String category = getIntent().getStringExtra("category");
 
 
+        image = (ImageView)findViewById(R.id.image);
+
+        if(value.equals( "Gastronomia" )){
+            image.setImageResource(R.drawable.food3 );
+        }
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,16 +84,16 @@ public class Informacja extends AppCompatActivity {
         fab.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayAdapter.notifyDataSetChanged();
-                Snackbar.make( view, "Replace with your own action\n"+arrayList.get( 2 ), Snackbar.LENGTH_LONG )
-                        .setAction( "Action", null ).show();
-            }
+                   // Toast.makeText( this, "Moja "+value, Toast.LENGTH_SHORT ).show();
+                    image.setImageResource(R.drawable.food3 );
+                }
+
         } );
 
 
-        listView =(ListView) findViewById(R.id.lista);
-        arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
-        listView.setAdapter(arrayAdapter);
+        //listView =(ListView) findViewById(R.id.lista);
+        //arrayAdapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,arrayList);
+        //listView.setAdapter(arrayAdapter);
 
 
 

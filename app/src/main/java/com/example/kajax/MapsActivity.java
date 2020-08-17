@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -54,7 +55,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private FloatingActionButton my_location;
     Boolean sprawdzK = false;
     Boolean sprawdzJ = false;
-
+    private ImageView image;
 
 
     @Override
@@ -99,6 +100,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         info = (FloatingActionButton) findViewById(R.id.info);
         my_location = (FloatingActionButton) findViewById(R.id.my_location);
 
+
         info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,7 +123,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         my_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(50.6031274, 23.0248219), 15);
+                CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(50.6031274, 23.0648333), 11);
                 mMap.animateCamera(cameraUpdate);
             }
         });
@@ -150,19 +152,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mMap.setMapType( GoogleMap.MAP_TYPE_TERRAIN );
             return true;
         } else if (id == R.id.kajaki) {
-            dodajMarker2( "Kayaks", true,"Zwierzyniec");
-            dodajMarker2( "Kayaks", true,"Obrocz");
-            dodajMarker2( "Kayaks", true,"Guciów");
-            dodajMarker2( "Kayaks", true,"Bondyrz");
+            dodajMarker2( "Kajaki", "Zwierzyniec");
+            dodajMarker2( "Kajaki", "Obrocz");
+            dodajMarker2( "Kajaki", "Guciów");
+            dodajMarker2( "Kajaki", "Bondyrz");
 
             //item.setIcon( R.drawable.food );
            // category = "Kayaks";
             return true;
         } else if (id == R.id.jedzenie) {
-            dodajMarker2( "Gastronomy", false, "Zwierzyniec" );
-            dodajMarker2( "Gastronomy", false, "Obrocz" );
-            dodajMarker2( "Gastronomy", false, "Guciów" );
-            dodajMarker2( "Gastronomy", false, "Bondyrz" );
+            dodajMarker2( "Gastronomia",  "Zwierzyniec" );
+            dodajMarker2( "Gastronomia",  "Obrocz" );
+            dodajMarker2( "Gastronomia",  "Guciów" );
+            dodajMarker2( "Gastronomia",  "Bondyrz" );
             return true;
         } else if (id == R.id.wyszukaj) {
             miejsce();
@@ -199,7 +201,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //LatLng pos= new LatLng(51.2466815, 22.5678196);
 
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(50.6031274, 23.0248219), 12);
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(50.6031274, 23.0648333), 11);
         mMap.animateCamera(cameraUpdate);
 
         mMap.setOnInfoWindowClickListener(this);
@@ -253,7 +255,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
 
-    public void dodajMarker2(final String kategoria, final boolean kolor, final String text) {// true== kajaki
+    public void dodajMarker2(final String kategoria, final String text) {// true== kajaki
         info.setVisibility( View.INVISIBLE );
 
         mUsers = FirebaseDatabase.getInstance().getReference( kategoria ).child( text );
@@ -267,13 +269,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     Lokalizacje user = s.getValue( Lokalizacje.class );
                     LatLng location = new LatLng( user.getLatitude()  , user.getLongitude() );
 
-                        if (kolor) {
+                        if (kategoria.equals( "Kajaki" )) {
                             Marker melbourne= mMap.addMarker( new MarkerOptions()
                                             .position( location )
                                             .title( user.getName() )
                                             //.icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE ) )
                                             .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker1))
-                                            .snippet( "Kayaks")
+                                            .snippet( "Kajaki")
                                     //.snippet( user.getLocal() )
                             );
                             meMap.put( user.getName(),text );
@@ -283,7 +285,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                                     .title( user.getName() )
                                     //.icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
                                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker2))
-                                    .snippet( "Gastronomy"  )
+                                    .snippet( "Gastronomia"  )
                             );
                             meMap.put( user.getName(),text );
                         }
@@ -300,8 +302,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onButtonClicked(String text) {
-      dodajMarker2( "Kayaks",true,text );
-        dodajMarker2( "Gastronomy",false,text );
+      dodajMarker2( "Kajaki",text );
+        dodajMarker2( "Gastronomia",text );
         Toast.makeText( this, text, Toast.LENGTH_SHORT ).show();
     }
 }
