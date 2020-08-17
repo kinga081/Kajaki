@@ -12,13 +12,13 @@
         android:id="@+id/kajaki"
         android:title="kajki"
         android:orderInCategory="100"
-        android:icon="@drawable/kayak"
+        android:icon="@drawable/kayak3"
         app:showAsAction="always" />
     <item
         android:id="@+id/jedzenie"
         android:title="jedzenie"
         android:orderInCategory="100"
-        android:icon="@drawable/food"
+        android:icon="@drawable/food3"
         app:showAsAction="always" />
 
 

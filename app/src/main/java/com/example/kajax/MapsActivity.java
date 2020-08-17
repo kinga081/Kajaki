@@ -38,7 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.OnMyLocationButtonClickListener,
-        GoogleMap.OnMyLocationClickListener,GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener, BottomNavigation.BottomSheetListener {
+        GoogleMap.OnMyLocationClickListener,GoogleMap.OnMarkerClickListener, GoogleMap.OnMapClickListener, BottomNavigation.BottomSheetListener, GoogleMap.OnInfoWindowClickListener {
 
     private GoogleMap mMap;
 
@@ -52,6 +52,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public String value;
     public String category;
     private FloatingActionButton my_location;
+    Boolean sprawdzK = false;
+    Boolean sprawdzJ = false;
 
 
 
@@ -68,6 +70,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         setSupportActionBar( toolbar );
         getSupportActionBar().setTitle( "Kajax" );
         toolbar.setTitleTextColor( Color.WHITE );
+
+      //toolbar.setNavigationIcon(R.mipmap.ic_launcher);
+        //toolbar.setOverflowIcon(ContextCompat.getDrawable(this, R.drawable.kayak));
         //toolbar.setLogo( R.drawable.kayak );
         //toolbar.setTitle( "Kajax" );
 
@@ -127,6 +132,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
         getMenuInflater().inflate( R.menu.menu_main, menu );
         return true;
     }
@@ -148,6 +154,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             dodajMarker2( "Kayaks", true,"Obrocz");
             dodajMarker2( "Kayaks", true,"Guciów");
             dodajMarker2( "Kayaks", true,"Bondyrz");
+
+            //item.setIcon( R.drawable.food );
            // category = "Kayaks";
             return true;
         } else if (id == R.id.jedzenie) {
@@ -155,7 +163,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             dodajMarker2( "Gastronomy", false, "Obrocz" );
             dodajMarker2( "Gastronomy", false, "Guciów" );
             dodajMarker2( "Gastronomy", false, "Bondyrz" );
-            //category = "Gastronomy";
             return true;
         } else if (id == R.id.wyszukaj) {
             miejsce();
@@ -163,6 +170,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
         return true;
     }
+
 
     public void miejsce(){
         BottomNavigation bottomSheet = new BottomNavigation();
@@ -194,7 +202,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(50.6031274, 23.0248219), 12);
         mMap.animateCamera(cameraUpdate);
 
+        mMap.setOnInfoWindowClickListener(this);
 
+
+    }
+
+    public void onInfoWindowClick(Marker marker) {
+        Intent startNewActivity = new Intent(MapsActivity.this, Informacja.class);
+        startNewActivity.putExtra("title", title);
+        startNewActivity.putExtra("value", value);
+        startNewActivity.putExtra("category", category);
+        startActivity(startNewActivity);
     }
 
 
@@ -223,7 +241,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public boolean onMarkerClick(Marker marker) {
         title = marker.getTitle();
         value = marker.getSnippet();
-        info.setVisibility(View.VISIBLE);
+        //info.setVisibility(View.VISIBLE); totototototototootto
         category = meMap.get(title);
         return false;
     }
@@ -247,13 +265,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot s : dataSnapshot.getChildren()) {
                     Lokalizacje user = s.getValue( Lokalizacje.class );
-                    LatLng location = new LatLng( Double.parseDouble( String.valueOf( user.getLatitude() ) ), Double.parseDouble( String.valueOf( user.getLongitude() ) ) );
+                    LatLng location = new LatLng( user.getLatitude()  , user.getLongitude() );
 
                         if (kolor) {
-                            mMap.addMarker( new MarkerOptions()
+                            Marker melbourne= mMap.addMarker( new MarkerOptions()
                                             .position( location )
                                             .title( user.getName() )
-                                            .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE ) )
+                                            //.icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_BLUE ) )
+                                            .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker1))
                                             .snippet( "Kayaks")
                                     //.snippet( user.getLocal() )
                             );
@@ -262,7 +281,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             mMap.addMarker( new MarkerOptions()
                                     .position( location )
                                     .title( user.getName() )
-                                    .icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
+                                    //.icon( BitmapDescriptorFactory.defaultMarker( BitmapDescriptorFactory.HUE_YELLOW ) )
+                                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.marker2))
                                     .snippet( "Gastronomy"  )
                             );
                             meMap.put( user.getName(),text );

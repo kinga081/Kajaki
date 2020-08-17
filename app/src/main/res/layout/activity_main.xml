@@ -33,6 +33,9 @@
         android:layout_marginTop="115dp"
         android:layout_marginRight="10dp"
         app:backgroundTint="#856084"
+        app:shapeAppearanceOverlay=""
+        app:srcCompat="@android:drawable/ic_menu_compass"
+        app:fabSize="mini"
         />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
