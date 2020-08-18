@@ -262,6 +262,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mUsers.push().setValue( marker );
         mMap.clear();
         meMap = new HashMap<String, String>();
+
         mUsers.addListenerForSingleValueEvent( new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -305,5 +306,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
       dodajMarker2( "Kajaki",text );
         dodajMarker2( "Gastronomia",text );
         Toast.makeText( this, text, Toast.LENGTH_SHORT ).show();
+
+        if(text.equals( "Zwierzyniec" )) {
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng( 50.6090759, 22.9850484 ), 13 );
+            mMap.animateCamera( cameraUpdate );
+        }else if(text.equals( "Obrocz" )){
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng( 50.5999074, 23.0179374 ), 14 );
+            mMap.animateCamera( cameraUpdate );
+        }else if(text.equals( "Guciów" )){
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng( 50.5839813, 23.0745209 ), 15 );
+            mMap.animateCamera( cameraUpdate );
+        }else if(text.equals( "Bondyrz" )){
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom( new LatLng( 50.5633757, 23.1319835 ), 15 );
+            mMap.animateCamera( cameraUpdate );
+        }
     }
 }

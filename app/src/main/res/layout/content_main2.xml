@@ -17,8 +17,9 @@
         android:gravity="center_horizontal"
         android:text="nazwa"
         android:layout_marginBottom="10dp"
-        android:textSize="25dp"
+        android:textSize="30dp"
         android:textColor="#250902"
+        android:textStyle="bold"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></TextView>
         <TextView
@@ -27,12 +28,38 @@
             android:layout_marginBottom="10dp"
             android:background="#9FA0C3"></TextView>
 
-        <TextView android:id="@+id/godziny"
-            android:text="godziny"
-            android:textSize="20dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            app:srcCompat="@drawable/time"></ImageView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <TextView
+            android:text="Godziny otwarcia:"
+            android:textSize="18dp"
             android:textColor="#38040E"
-            android:layout_width="wrap_content"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"></TextView>
+        <TextView android:id="@+id/godziny"
+            android:hint="godziny"
+            android:textSize="22dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="#38040E"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></TextView>
+        </LinearLayout>
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -47,7 +74,7 @@
 
         <TextView android:id="@+id/adres"
             android:hint="adres"
-            android:textSize="25dp"
+            android:textSize="22dp"
             android:textColor="#640D14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"></TextView>
