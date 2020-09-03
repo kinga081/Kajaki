@@ -156,7 +156,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             dodajMarker2( "Kajaki", "Obrocz");
             dodajMarker2( "Kajaki", "Guciów");
             dodajMarker2( "Kajaki", "Bondyrz");
-
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(50.6031274, 23.0648333), 11);
+            Toast.makeText( this, "Kajaki", Toast.LENGTH_SHORT ).show();
+            mMap.animateCamera(cameraUpdate);
             //item.setIcon( R.drawable.food );
            // category = "Kayaks";
             return true;
@@ -165,6 +167,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             dodajMarker2( "Gastronomia",  "Obrocz" );
             dodajMarker2( "Gastronomia",  "Guciów" );
             dodajMarker2( "Gastronomia",  "Bondyrz" );
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(new LatLng(50.6031274, 23.0648333), 11);
+            Toast.makeText( this, "Gastronomia", Toast.LENGTH_SHORT ).show();
+            mMap.animateCamera(cameraUpdate);
             return true;
         } else if (id == R.id.wyszukaj) {
             miejsce();
